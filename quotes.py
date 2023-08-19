@@ -5,7 +5,7 @@ import requests
 import psycopg2
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:sifrazapostgre@localhost/quotes"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:sifrazapostgres@localhost/quotes"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 db = SQLAlchemy(app)
 
