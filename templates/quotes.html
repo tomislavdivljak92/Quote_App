@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Add Your Quote</title>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" >
+
+
+  </head>
+  <style>
+    body {
+       background-image: url("/static/vecteezy_abstract-background-design-background-texture-design-with_18752866.jpg");
+       background-size: cover;
+       background-attachment: fixed;
+       background-position: center center;
+       background-repeat: no-repeat;
+       }
+
+       .text-center {
+       text-align: center;
+       margin-top: 20px; /* Add some spacing from the input fields */
+   }
+  </style>
+  <body>
+    <br>
+
+  <br>
+
+    <div class="container">
+
+      <form action="/process" method="post">
+        <div class="form-group">
+          <label for="author">Quote Author</label>
+          <input type="text" id="InputName" name="author" class="form-control" placeholder="Add quote author here">
+        </div>
+        <div class="form-group">
+          <label for="quote">Quote</label>
+            <textarea class="form-control" rows="5" id="quote" name="quote" placeholder="Add your quote here..."></textarea>
+
+        </div>
+        <div class="text-center">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit Your Quote</button>
+</div>
+
+      </form>
+
+    </div>
+
+
+
+  </body>
+</html>

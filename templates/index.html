@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Favourite Quotes</title>
+    <style>
+      body {
+         background-image: url("/static/jonatan-pie-3l3RwQdHRHg-unsplash.jpg");
+         background-size: cover;
+         background-attachment: fixed;
+         background-position: center center;
+         background-repeat: no-repeat;
+         }
+    </style>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" >
+
+  </head>
+
+  <body>
+    <nav style="margin-top:25px;margin-left:125px" >
+      <a class="btn btn-primary" href="{{ url_for('quotes') }}">Add a Quote</a>
+    </nav>
+
+
+
+    <br>
+    <nav style="margin-top:-62px;margin-left:255px" >
+      <a id="add-quote-link" class="btn btn-dark" href="javascript:void(0);">Add a Random Quote</a>
+
+
+    </nav>
+  <script>
+      document.getElementById("add-quote-link").addEventListener("click", function(event) {
+          event.preventDefault(); // Prevent the anchor from navigating
+
+          fetch("/add_random_quote", { method: 'POST' })
+              .then(response => response.json())
+              .then(data => {
+                  console.log(data.message); // Print the message to the console
+
+              })
+              .catch(error => {
+                  console.error(error);
+                  location.reload(); // Reload the page to see the updated quotes // Print any errors to the console
+              });
+
+      });
+  </script>
+
+
+    </br>
+
+    <div class="container theme-showcase" role="main">
+
+      <div style="color:#fff;background-color:#696969", class="container-fluid bg-dark text-light p-5">
+        <h1>Favourite Quotes</h1>
+
+      </div>
+
+      {% for r in result %}
+
+
+
+      <div style="color:#fff;background-color:#5533ff">
+        <h1> {{ r.author }} </h1>
+
+
+      </div>
+       <div style="color:#2F4F4F;font-size:28px;background-color:#99ff33">
+         <p> {{ r.quote }} </p>
+
+
+       </div>
+
+      {% endfor %}
+
+    </div>
+
+
+
+  </div>
+  </body>
+</html>
