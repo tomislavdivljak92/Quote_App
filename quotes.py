@@ -4,9 +4,11 @@ import json
 import requests
 import psycopg2
 
+
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://myfavquotes_user:xnEpJ3ewfqJ3kse5Ht4NXOQleYc44fvC@dpg-cjgcrbj6fquc73cpie90-a.frankfurt-postgres.render.com/myfavquotes"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:sifrazapostgre@localhost/quotes"
+#"postgres://myfavquotes_user:xnEpJ3ewfqJ3kse5Ht4NXOQleYc44fvC@dpg-cjgcrbj6fquc73cpie90-a.frankfurt-postgres.render.com/myfavquotes"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=True
 db = SQLAlchemy(app)
 
 
