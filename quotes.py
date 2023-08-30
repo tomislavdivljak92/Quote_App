@@ -3,15 +3,17 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 import requests
 import psycopg2
-import os
+
 
 
 app = Flask(__name__)
 #app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:sifrazapostgre@localhost/quotes"
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
-#"postgres://myfavquotes_user:xnEpJ3ewfqJ3kse5Ht4NXOQleYc44fvC@dpg-cjgcrbj6fquc73cpie90-a.frankfurt-postgres.render.com/myfavquotes"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://myfavquotes_user:xnEpJ3ewfqJ3kse5Ht4NXOQleYc44fvC@dpg-cjgcrbj6fquc73cpie90-a.frankfurt-postgres.render.com/myfavquotes"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
+#"postgres://myfavquotes_user:xnEpJ3ewfqJ3kse5Ht4NXOQleYc44fvC@dpg-cjgcrbj6fquc73cpie90-a.frankfurt-postgres.render.com/myfavquotes"
+#app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 db = SQLAlchemy(app)
+
 
 
 
@@ -32,7 +34,7 @@ def fetch_and_store_quote():
         quote_text = quote_data['quote']
 
         #conn = psycopg2.connect(host="localhost", dbname="quotes", user="postgres", password="sifrazapostgre")
-        conn = psycopg2.connect(host="localhost", dbname="quotes", user="postgres", password="sifrazapostgre")
+        conn = psycopg2.connect(host="dpg-cjgcrbj6fquc73cpie90-a", dbname="myfavquotes", user="myfavquotes_user", password="xnEpJ3ewfqJ3kse5Ht4NXOQleYc44fvC")
         cursor = conn.cursor()
         cursor.execute(
                 "INSERT INTO Favquotes(author, quote) VALUES (%s, %s)",
