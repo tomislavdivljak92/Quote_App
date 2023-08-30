@@ -3,13 +3,18 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 import requests
 import psycopg2
+import os
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:sifrazapostgre@localhost/quotes"
+#app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:sifrazapostgre@localhost/quotes"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 #"postgres://myfavquotes_user:xnEpJ3ewfqJ3kse5Ht4NXOQleYc44fvC@dpg-cjgcrbj6fquc73cpie90-a.frankfurt-postgres.render.com/myfavquotes"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=True
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 db = SQLAlchemy(app)
+
+
+
 
 
 class Favquotes(db.Model):
@@ -26,6 +31,7 @@ def fetch_and_store_quote():
         quote_author = quote_data['author']
         quote_text = quote_data['quote']
 
+        #conn = psycopg2.connect(host="localhost", dbname="quotes", user="postgres", password="sifrazapostgre")
         conn = psycopg2.connect(host="localhost", dbname="quotes", user="postgres", password="sifrazapostgre")
         cursor = conn.cursor()
         cursor.execute(
